@@ -9,7 +9,7 @@ public class Sort {
 					temp=arr[j];
 					arr[j]=arr[j+1];
 					arr[j+1]=temp;
-					PrintSort.printsort(arr);
+					//PrintSort.printsort(arr);
 				}
 			}
 		}
