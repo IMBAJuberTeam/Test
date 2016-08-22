@@ -7,35 +7,33 @@ import java.sql.ResultSet;
 public class JdbcDemo {
 	public static void main(String[] args){
 		try {
-			//¼ÓÔØÊı¾İ¿âÇı¶¯Àà
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			Class.forName("com.mysql.jdbc.Driver");
 			
-			//´´½¨Êı¾İ¿âÁ¬½Ó
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ¿ï¿½ï¿½ï¿½ï¿½ï¿½
 			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/test","root","");
 			
-			//ÎªÁ¬½Ó´´½¨Ò»¸ö×´Ì¬
+			//Îªï¿½ï¿½ï¿½Ó´ï¿½ï¿½ï¿½Ò»ï¿½ï¿½×´Ì¬
 			Statement stmt=conn.createStatement();
 			
-			//´´½¨Ò»¸ösqlÓï¾ä£¬ºÍÒ»¸ö´æ·ÅsqlÖ´ĞĞ½á¹û¼¯µÄResultSet¼¯ºÏ
-			String sql="select * from area";
+			//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½sqlï¿½ï¿½ä£¬ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½sqlÖ´ï¿½Ğ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ResultSetï¿½ï¿½ï¿½ï¿½
+			String sql="select * from area where areaName like '%çœ' ";
+			//String sql="select * from area ";
 			ResultSet rs=stmt.executeQuery(sql);
 			
-			//String sql2="update user set password=\"123\" where username=\"dengyouqing\"";
-			//ResultSet rs2=stmt.executeUpdate(sql2);
 			int columns=rs.getMetaData().getColumnCount();
 			while(rs.next()){
-			    for(int i=1;i<=columns;i++){
-			    	System.out.print(rs.getString(i));
-			    	System.out.print("\t\t");
-			    }
-			    System.out.println();
+				for(int i=1;i<=columns;i++){
+				    System.out.print(rs.getString(i));
+				    System.out.print("\t\t");
+				}
+			    System.out.print("\n");
 			}
-			System.out.println(rs);
+			System.out.print(rs);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		
 	}
 	
