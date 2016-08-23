@@ -11,12 +11,11 @@ public class JdbcDemo {
 			Class.forName("com.mysql.jdbc.Driver");
 			
 			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=GBK&zeroDateTimeBehavior=convertToNull","root","");
-			//Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","");
 			
 			Statement stmt=conn.createStatement();
 			
-			//String sql="select * from area where areaName like \'11%\' ";
 			String sql="select * from area where areaCode like '%0000'";
+//			String sql="select * from area where areaName like '%省'";
 			ResultSet rs=stmt.executeQuery(sql);
 			
 			int columns=rs.getMetaData().getColumnCount();
@@ -46,8 +45,12 @@ public class JdbcDemo {
 			Statement stmt=conn.createStatement();
 			String sql="select * from area where areaName like '%市'";
 			ResultSet rs=stmt.executeQuery(sql);
+			int columns=rs.getMetaData().getColumnCount();
 			while(rs.next()){
-				System.out.println(rs.getString(3));
+				for(int i=1;i<=columns;i++){
+				System.out.print(rs.getString(i)+"\t");
+				}
+				System.out.print("\n");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
